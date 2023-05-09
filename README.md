@@ -12,5 +12,5 @@ This app includes the following:
 * Fahrenheit/celsius button meant for toggling the temperature unit. 
 * Imperial and Metrics buttons meant for toggling the measurement system used in the weather data.
 
-# Tips
+# Tip
 It is recommended to specify the place. For example, instead of inputting only "Miami", it would be better to use "Miami FL".
