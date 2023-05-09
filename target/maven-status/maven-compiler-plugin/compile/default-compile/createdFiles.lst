@@ -1,0 +1,5 @@
+com/simpleweatherapp/data/WeatherAPI.class
+com/simpleweatherapp/ui/UserInterface.class
+com/simpleweatherapp/data/Geocoder.class
+com/simpleweatherapp/weather/Weather.class
+com/simpleweatherapp/weather/WeatherLabels.class
