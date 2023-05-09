@@ -1,6 +1,6 @@
 # SimpleWeatherApp
 A simple weather app that shows current weather data of a selected place based on search.
-
+![Alt Text](image.png)
 # Note
 In order to use this program, an api key is needed from Geocodify. It handles the geocoding of the desired query given from the user. A free account can be made at https://geocodify.com. The program will prompt for an API key once it is launched.
 
