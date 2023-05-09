@@ -7,7 +7,7 @@ In order to use this program, an api key is needed from Geocodify. It handles th
 # Summary
 This weather app was built using Java and JavaFX. 
 This app includes the following:
-* A search bar is used to change the selected location. 
+* A search bar used to change the selected location. 
 * Weather variables such as current temperature, humidity, dew point, precipitation, visibility, and wind speed. 
 * Fahrenheit/celsius button meant for toggling the temperature unit. 
 * Imperial and Metrics buttons meant for toggling the measurement system used in the weather data.
