@@ -90,6 +90,7 @@ public class UserInterface extends Application {
                     Button imperialButton = new Button("Imperial");
                     Button metricsButton = new Button("Metrics");
                     HBox buttonBox = new HBox(tempButton, imperialButton, metricsButton);
+                    buttonBox.setPadding(new Insets(10, 10, 10, 10));
                     temperatureLabel.setFont(new Font("Monospaced", 35));
                     VBox cityPane = new VBox(city, temperatureLabel);
                     VBox weatherInfo = new VBox(humidityLabel, dewPointLabel,
@@ -111,6 +112,7 @@ public class UserInterface extends Application {
                     Label loading = new Label("Loading...");
                     loading.setVisible(false);
                     searchBox.getChildren().add(loading);
+                    searchBox.setPadding(new Insets(10, 10, 10, 10));
                     layout.setTop(buttonPane);
                     layout.setBottom(weatherInfo);
                     layout.setCenter(cityPane);
