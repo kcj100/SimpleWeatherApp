@@ -118,9 +118,7 @@ public class UserInterface extends Application {
                     layout.setCenter(cityPane);
                     geoLocation(searchBar.getText());
                     getCity(searchBar.getText(), city);
-
                     weatherAPI.fetchWeatherData(lat, lng);
-
                     addButtonListeners(tempButton, imperialButton, metricsButton);
                     addSearchBarEnterButtonListener(searchBar, enterButton, city, loading);
                     Scene view = new Scene(layout);
