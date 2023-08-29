@@ -31,7 +31,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class UserInterface extends Application {
-
+    
     private static int WIDTH = 800;
     private static int HEIGHT = 400;
     private double lat = 0.0;
@@ -39,10 +39,12 @@ public class UserInterface extends Application {
     WeatherAPI weatherAPI = new WeatherAPI();
     private int counter = 1;
     Geocoder geocoder = new Geocoder();
-
+    
+    @Override
     public void start(Stage window) throws IOException, InterruptedException {
         BorderPane apiMenu = new BorderPane();
         apiMenu.setPrefSize(WIDTH / 2, HEIGHT / 2);
+        apiMenu.setPadding(new Insets(30, 30, 30, 30));
         Label instructions = new Label("Enter Geocodify API key");
         instructions.setFont(new Font("Monospaced", 20));
         TextField apiField = new TextField();
@@ -79,13 +81,13 @@ public class UserInterface extends Application {
                     layout.setPrefSize(WIDTH, HEIGHT);
                     Label city = new Label("City");
                     city.setFont(new Font("Monospaced", 50));
-
+                    
                     TextField searchBar = new TextField();
                     searchBar.setText("19802");
                     searchBar.setFont(new Font("Monospaced", 15));
                     Button enterButton = new Button("Enter");
                     enterButton.setFont(new Font("Monospaced", 15));
-
+                    
                     Button tempButton = new Button("C/F");
                     Button imperialButton = new Button("Imperial");
                     Button metricsButton = new Button("Metrics");
@@ -97,7 +99,7 @@ public class UserInterface extends Application {
                             precipitationLabel, visibilityLabel, windSpeedLabel);
                     weatherInfo.setAlignment(Pos.CENTER);
                     cityPane.setAlignment(Pos.TOP_CENTER);
-
+                    
                     weatherInfo.getChildren().stream()
                             .forEach((Node node) -> {
                                 if (node instanceof Label) {
@@ -131,11 +133,11 @@ public class UserInterface extends Application {
                 }
             }
         });
-
+        
     }
-
+    
     private void geoLocation(String query) throws IOException, InterruptedException {
-
+        
         ObjectMapper mapper = new ObjectMapper();
         String response = geocoder.GeocodeSync(query);
         JsonNode rootNode = mapper.readTree(response);
@@ -162,9 +164,9 @@ public class UserInterface extends Application {
                 .get("coordinates")
                 .get(0).asDouble();
     }
-
+    
     private void getCity(String query, Label cityLabel) throws IOException, InterruptedException {
-
+        
         ObjectMapper mapper = new ObjectMapper();
         String response = geocoder.GeocodeSync(query);
         JsonNode rootNode = mapper.readTree(response);
@@ -186,24 +188,24 @@ public class UserInterface extends Application {
                 .get("properties")
                 .get("label").asText();
         cityLabel.setText(city);
-
+        
     }
-
+    
     private void addButtonListeners(Button tempButton, Button imperialButton, Button metricsButton) {
         tempButton.setOnAction((event) -> {
-
+            
             if (counter == 0) {
                 try {
                     weatherAPI.setTempToggle(0);
                     weatherAPI.fetchWeatherData(lat, lng);
                     counter++;
-
+                    
                 } catch (IOException ex) {
                     Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                
             } else {
                 try {
                     weatherAPI.setTempToggle(1);
@@ -214,7 +216,7 @@ public class UserInterface extends Application {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                
             }
         });
         imperialButton.setOnAction((event) -> {
@@ -227,7 +229,7 @@ public class UserInterface extends Application {
                 Logger.getLogger(UserInterface.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-
+        
         metricsButton.setOnAction((event) -> {
             weatherAPI.setMeasureToggle(1);
             try {
@@ -239,7 +241,7 @@ public class UserInterface extends Application {
             }
         });
     }
-
+    
     private void addSearchBarEnterButtonListener(TextField searchBar, Button enterButton, Label cityLabel, Label loading) {
         searchBar.setOnKeyPressed((event) -> {
             if (event.getCode() == KeyCode.ENTER) {
@@ -247,7 +249,7 @@ public class UserInterface extends Application {
                 event.consume();
             }
         });
-
+        
         enterButton.setOnAction((event) -> {
             try {
                 loading.setVisible(true);
@@ -263,5 +265,5 @@ public class UserInterface extends Application {
             }
         });
     }
-
+    
 }
